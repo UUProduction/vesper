@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: vesper-backend
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: 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
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: NODE_ENV
+        value: production
+    plan: free
+
+  - type: web
+    name: vesper-frontend
+    runtime: static
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+    plan: free
